@@ -20,6 +20,6 @@ configmaps:
     color: "green"
 
 ingress:
-  name: "weatherpp-ingress"
+  name: "weatherapp-ingress"
   className: "nginx"
   path: "/"
