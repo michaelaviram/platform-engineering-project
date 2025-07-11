@@ -4,15 +4,17 @@
 
 ## Overview
 
-A simple platform for managing environments comprising of a wheather webapp and a MySQL database, inside a kubernetes cluster.
+A simple platform for managing environments comprising of a wheather webapp and a MySQL database, inside a minikube cluster.
 
 ## Installation
 
 ### Prerequests
 
-* Kubectl
+* Kubectl installed
+* Minikube cluster running with ingress
 
 ### Setting up the platform
+
 
 Once you have a kubernetes cluster up and running:
 

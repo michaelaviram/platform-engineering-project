@@ -93,8 +93,8 @@ def app_status():
 @app.route("/show_tables", methods =["GET"])
 def show_tables():
     try:
-        status = backend.show_tables(namespace)  
-        return redirect(url_for("environment", message=status))
+        tables = backend.show_tables(namespace)  
+        return redirect(url_for("environment", message=tables))
 
     except Exception as e:
         return render_template("env.html", namespace=namespace, message=f"{e}")

@@ -26,8 +26,7 @@ def create_env(namespace):
 
         app_result = subprocess.run(
             ["helm", "install", "weatherapp", "./weatherapp/", "-n",
-            namespace, "--create-namespace", "--set", f"ingress.hostName={namespace}",
-            "--set", "auth.database=weather"],
+            namespace, "--create-namespace", "--set", f"ingress.hostName={namespace}"],
             stderr=subprocess.PIPE,
             text=True,
             env=env
@@ -35,7 +34,7 @@ def create_env(namespace):
         
         db_result = subprocess.run(
             ["helm", "install", "db", "oci://registry-1.docker.io/bitnamicharts/mysql", 
-            "-n", namespace],
+            "-n", namespace, "--set", "auth.database=weather"],
             stderr=subprocess.PIPE,
             text=True,
             env=env
@@ -156,13 +155,14 @@ def show_tables(namespace):
         cursor.execute("SHOW TABLES;")
         tables = cursor.fetchall()
         table_names = [t[0] for t in tables]
-        
-        return jsonify({
-            "tables": table_names
-        })
+
+        if not table_names:
+            return "There are currently no tables in database!"
+
+        return table_names
 
     except Error as e:
-        return jsonify({"error": str(e)}), 500
+        return f"{e}"
 
     finally:
         if connection and connection.is_connected():
@@ -195,7 +195,6 @@ def get_db_connection(namespace):
             return connection
 
     except Error as e:
-        print(f"{e}")
         return None
 
 def add_domain_to_hosts(namespace):
