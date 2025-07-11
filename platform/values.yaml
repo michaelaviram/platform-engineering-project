@@ -1,0 +1,33 @@
+deployment:
+  name: "platform"
+  replicas: "1"
+  image: "michaelaviram/platform"
+  imagePullPolicy: "Always"
+  containerPort: "8080"
+
+service:
+  name: "platform-service"
+  port: "8080"
+  targetPort: "8080"
+
+ingress:
+  name: "platform-ingress"
+  className: "nginx"
+  hostName: "home.platform"
+
+roles:
+  app:
+    name: "app-deployer"
+  db:
+    name: "db-deployer"
+
+rolebinding:
+  app: "app-rolebinding"
+  db: "db-rolebinding"
+  kind: "User"
+  username: "system:serviceaccount:default:default"
+  apiGroup: "rbac.authorization.k8s.io"
+ 
+
+
+

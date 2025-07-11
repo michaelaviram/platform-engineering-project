@@ -14,12 +14,12 @@ service:
 configmaps:
   first:
     name: "blue"
-    color: "green"
+    color: "blue"
   second:
     name: "green"
     color: "green"
 
 ingress:
-  name: "weatherapp-ingress"
+  name: "weatherpp-ingress"
   className: "nginx"
-  path: "/"
+  hostName: "michael"

@@ -17,12 +17,7 @@ spec:
       containers:
       - name: {{ .Values.deployment.name }}
         image: {{ .Values.deployment.image }}
+        imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
         ports:
         - containerPort: {{ .Values.deployment.containerPort }}
-        env:
-          - name: BG_COLOR
-            valueFrom: 
-              configMapKeyRef:
-                name: {{ .Values.deployment.configmap }} 
-                key: {{ .Values.deployment.configmapKey }}
 

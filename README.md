@@ -1,60 +1,27 @@
+# WORK IN PROGRESS
+
 # Platform Engeeniring Project
 
 ## Overview
 
-A simple platform for managing environments for a wheather webapp and a DynamoDB database.
+A simple platform for managing environments comprising of a wheather webapp and a MySQL database, inside a kubernetes cluster.
 
 ## Installation
 
 ### Prerequests
 
-* Terraform
-* Docker
 * Kubectl
-* AWS CLI 
-* Helm
 
-### Setting up the EKS cluster and the ALB Ingress Controller:
+### Setting up the platform
 
-```bash
-cd infra
-terraform apply
-```
-
-Type "yes".
-
-### Install the DynamoDB ACK Serivce Controller:
+Once you have a kubernetes cluster up and running:
 
 ```bash
-bash ack_controller_install.sh
+helm install platform platform/
 ```
 
-### Set up IRSA for the DynamoDB Controller:
+Than visit the url.
 
-* NOTE: The script uses the eksctl docker container command.
+## Using the platform
 
-```bash
-bash ack_irsa.sh
-```
-
-### Create DynamoDB table:
-
-```bash
-kubectl create -f table.yaml
-```
-
-## run platform in venv (dev):
-
-### Install dependencies:
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-### Run platform:
-```bash
-python3 app.py
-```
-
-
+Usage is straightforward. Type in your environment name, and use as you will.

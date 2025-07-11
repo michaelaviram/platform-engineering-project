@@ -1,0 +1,11 @@
+services:
+  app:
+    image: michaelaviram/platform
+    container_name: app
+    ports:
+      - 8080:8080
+      - 8989:8989
+    volumes:
+      - ./minikube-kubeconfig:/home/platform/.kube/config
+    environment:
+      - KUBECONFIG=/home/platform/.kube/config

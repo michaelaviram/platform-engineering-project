@@ -1,0 +1,27 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ .Values.rolebinding.app }}
+subjects:
+- kind: {{ .Values.rolebinding.kind }}
+  name: {{ .Values.rolebinding.username }}
+  apiGroup: {{ .Values.rolebinding.apiGroup }}
+roleRef:
+  kind: ClusterRole
+  name: {{ .Values.roles.app.name }}
+  apiGroup: {{ .Values.rolebinding.apiGroup }}
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ .Values.rolebinding.db }}
+subjects:
+- kind: {{ .Values.rolebinding.kind }}
+  name: {{ .Values.rolebinding.username }}
+  apiGroup: {{ .Values.rolebinding.apiGroup }}
+roleRef:
+  kind: ClusterRole
+  name: {{ .Values.roles.db.name }}
+  apiGroup: {{ .Values.rolebinding.apiGroup }}
+
